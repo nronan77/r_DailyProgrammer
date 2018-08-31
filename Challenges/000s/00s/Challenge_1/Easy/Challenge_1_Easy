@@ -1,0 +1,27 @@
+"""
+Challenge: Create a program that will ask the users name, age, and reddit username.
+have it tell them the information back, in the format:
+
+your name is (blank), you are (blank) years old, and your username is (blank)
+
+Bonus: Have the program log this information in a file to be accessed later.
+"""
+
+
+def ask_for_info():
+    name = input("What is your name? ")
+    age = input("How old are you? ")
+    username = input("What is your Reddit username? ")
+
+    save_info(name, age, username)
+    print(f"Your name is {name}. You are {age} years old. Your username is {username}.")
+
+
+def save_info(name, age, username):
+    file = open("reddit_users.csv", "a+")
+    file.write(f"{name}, {age}, {username}\n")
+    file.close()
+
+
+if __name__ == '__main__':
+    ask_for_info()
