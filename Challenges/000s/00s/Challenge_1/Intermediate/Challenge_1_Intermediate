@@ -1,0 +1,21 @@
+def add_event(events):
+    while True:
+        hour = input('Please enter the hour of the event: ')
+
+        try:
+            hour = int(hour)
+            if type(hour) is int and hour in range(0, 23):
+                print(hour)
+                break
+        except:
+            print('Value is not a valid integer.\n')
+
+    event_name = input('Please enter the name of the event: ')
+
+    event = {
+        "event_name": event_name,
+        "hour": hour
+    }
+
+    while True:
+        middle_index = len(events)/2

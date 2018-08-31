@@ -1,0 +1,36 @@
+def calculate_scores(score_string):
+    count = score_string.count
+    a = count("a") - count("A")
+    b = count("b") - count("B")
+    c = count("c") - count("C")
+    d = count("d") - count("D")
+    e = count("e") - count("E")
+
+    return {"a": a, "b": b, "c": c, "d": d, "e": e}
+
+
+def print_scores(scores):
+    placements = []
+
+    for score in scores:
+        placements.append((score, scores[score]))
+
+    placements.sort(key=evaluate, reverse=True)
+
+    order_string = ""
+    scores_string = "\n"
+
+    for n in range(len(scores)):
+        order_string += placements[n][0] + ' '
+        scores_string += str(placements[n][1]) + ' '
+
+    print(order_string + scores_string)
+
+
+def evaluate(score):
+    return score[1]
+
+
+if __name__ == "__main__":
+    scores = calculate_scores("EbAAdbBEaBaaBBdAccbeebaec")
+    print_scores(scores)
