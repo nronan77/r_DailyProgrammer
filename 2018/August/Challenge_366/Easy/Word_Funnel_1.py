@@ -9,6 +9,13 @@ If there are two possible letters you can remove to make the same word, only cou
 Ordering of the output words doesn't matter.
 
 Bonus 2:
+Given an input word from enable1, the largest number of words that can be returned from bonus(word) is 5.
+One such input is "boats". There are 28 such inputs in total. Find them all.
+
+Ideally you can do this without comparing every word in the list to every other word in the list.
+A good time is around a second. Possibly more or less, depending on your language and platform of choice -
+Python will be slower and C will be faster. The point is not to hit any specific run time,
+just to be much faster than checking every pair of words.
 """
 import sys
 
@@ -62,7 +69,7 @@ def bonus_two(list_words):
 
 
 def bonus(bonus_word):
-    file = open("enable1.txt", "r")
+    file = open("../Resources/enable1.txt", "r")
     list_words = file.read().split("\n")
     file.close()
 
@@ -70,7 +77,7 @@ def bonus(bonus_word):
     print("Bonus 2: " + str(bonus_two(list_words)))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if (len(sys.argv) - 1) % 2 == 1:
         bonus_word = sys.argv[len(sys.argv) - 1]
         bonus(bonus_word)

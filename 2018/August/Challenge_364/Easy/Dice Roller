@@ -1,0 +1,66 @@
+"""
+Challenge:
+Your input will contain one or more lines, where each line will be in the form of "NdM"; for example:
+
+3d6
+4d12
+1d10
+5d4
+
+If you've ever played D&D you probably recognize those, but for the rest of you, this is what those mean:
+The first number is the number of dice to roll, the d just means "dice", it's just used to split up the two numbers,
+and the second number is how many sides the dice have. So the above example of "3d6" means "roll 3 6-sided dice".
+Also, just in case you didn't know, in D&D, not all the dice we roll are the normal cubes.
+A d6 is a cube, because it's a 6-sided die, but a d20 has twenty sides, so it looks a lot closer to a ball than a cube.
+The first number, the number of dice to roll, can be any integer between 1 and 100, inclusive.
+The second number, the number of sides of the dice, can be any integer between 2 and 100, inclusive.
+"""
+
+"""
+Bonus: In addition to the sum of all dice rolls for your output, print out the result of each roll on the same line, 
+using a format that looks something like
+
+14: 6 3 5
+22: 10 7 1 4
+9: 9
+11: 3 2 2 1 3
+
+You could also try setting it up so that you can manually input more rolls. that way you can just leave the program 
+open and every time you want to roll more dice, you just type it in and hit enter.
+"""
+import random
+
+
+def dice_roll(dice_string):
+    values = dice_string.split("d")
+    num_dice = int(values[0])
+    num_sides = int(values[1])
+    rolls_sum = 0
+    roll_values = []
+
+    for n in range(num_dice):
+        roll_value = random.randint(1, num_sides)
+        rolls_sum += roll_value
+        roll_values.append(roll_value)
+
+    print(f"{rolls_sum}: {roll_values}")
+
+
+def roll_the_dice():
+    file = open("challenge_input", "r")
+    dice_rolls = file.read().split("\n")
+
+    for roll in dice_rolls:
+        dice_roll(roll)
+
+    while True:
+        roll = input("\nPlease enter a new roll in the format '{Number of Dice}d{Number of Sides}' or 'Q' to quit: ")
+
+        if roll.lower() != 'q':
+            dice_roll(roll)
+        else:
+            break
+
+
+if __name__ == "__main__":
+    roll_the_dice()
